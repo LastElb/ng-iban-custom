@@ -311,7 +311,7 @@
         ctrl.$parsers.unshift(function(viewValue) {
           var parsed, valid;
           if (viewValue != null) {
-            valid = isValidIban(viewValue);
+            valid = isValidIban(viewValue) || modelValue.length == 0;
             ctrl.$setValidity('iban', valid);
             if (valid) {
               parsed = parseIban(viewValue);
@@ -328,7 +328,7 @@
         return ctrl.$formatters.unshift(function(modelValue) {
           var parsed, valid;
           if (modelValue != null) {
-            valid = isValidIban(modelValue);
+            valid = isValidIban(modelValue) || modelValue.length == 0;
             ctrl.$setValidity('iban', valid);
             if (valid) {
               parsed = parseIban(modelValue);
